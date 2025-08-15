@@ -1,0 +1,27 @@
+{
+  "id" : 1,
+  "clientId" : 1,
+  "date" : "2025-08-15",
+  "lignesFactures" : [ {
+    "id" : 1,
+    "description" : "Création site vitrine",
+    "quantite" : 1,
+    "prixUnitaireHT" : 800.0,
+    "tauxTVA" : "TVA_20"
+  }, {
+    "id" : 2,
+    "description" : "Hébergement annuel",
+    "quantite" : 1,
+    "prixUnitaireHT" : 120.0,
+    "tauxTVA" : "TVA_20"
+  }, {
+    "id" : 3,
+    "description" : "Maintenance mensuelle",
+    "quantite" : 12,
+    "prixUnitaireHT" : 25.0,
+    "tauxTVA" : "TVA_20"
+  } ],
+  "totaleHT" : 1220.0,
+  "totaleTVA" : 244.0,
+  "totaleTTC" : 1464.0
+}

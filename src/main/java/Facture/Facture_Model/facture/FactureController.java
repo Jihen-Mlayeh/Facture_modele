@@ -1,17 +1,23 @@
 package Facture.Facture_Model.facture;
 
 import Facture.Facture_Model.client.ClientResponse;
+import Facture.Facture_Model.export.JsonExportService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.File;
+import java.io.IOException;
+
 @RestController
 @AllArgsConstructor
 @RequestMapping("/api/v1/factures")
 public class FactureController {
     private final FactureService factureService;
+    private final JsonExportService jsonExportService;
+
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createFacture(
@@ -27,6 +33,23 @@ public class FactureController {
         return ResponseEntity.ok(factureResponse);
 
     }
+    @GetMapping("/{factureId}/export-json")
+    public ResponseEntity<?> factureExportJson(
+            @PathVariable("factureId") Long factureId
+    ) {
+        try {
+            FactureResponse facture =factureService.factureDetails(factureId);
+            File jsonFile=jsonExportService.exportFactureToJson(facture);
+            return ResponseEntity.ok()
+                    .header("Content-Disposition", "attachement; filename="+jsonFile.getName())
+                    .body(org.springframework.util.FileCopyUtils.copyToByteArray(jsonFile));
+
+        }catch (Exception e){
+            return ResponseEntity.status(500).body("Erreur lors de l'export : "+e.getMessage());
+        }
+
+    }
+
 
 
 }
