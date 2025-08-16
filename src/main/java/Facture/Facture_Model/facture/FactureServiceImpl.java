@@ -8,6 +8,7 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -72,6 +73,13 @@ public class FactureServiceImpl implements FactureService {
     @Override
     public FactureResponse factureDetails(Long factureId) {
         Facture facture =factureRepository.findById(factureId).get();
+        facture.getLignesFactures().size();
+        return factureMapper.mapToFactureResponse(facture);
+    }
+
+    @Override
+    public FactureResponse factureDetailsByDate(LocalDate factureDate) {
+        Facture facture =factureRepository.findByDate(factureDate);
         facture.getLignesFactures().size();
         return factureMapper.mapToFactureResponse(facture);
     }

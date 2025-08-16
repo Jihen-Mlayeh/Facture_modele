@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
 
 @RestController
 @AllArgsConstructor
@@ -30,6 +31,14 @@ public class FactureController {
             @PathVariable("factureId") Long factureId
     ){
         FactureResponse factureResponse= factureService.factureDetails(factureId);
+        return ResponseEntity.ok(factureResponse);
+
+    }
+    @GetMapping("/factureByDate/{factureDate}")
+    public ResponseEntity<FactureResponse> factureDetailsByDate(
+            @PathVariable("factureDate") LocalDate factureDate
+    ){
+        FactureResponse factureResponse= factureService.factureDetailsByDate(factureDate);
         return ResponseEntity.ok(factureResponse);
 
     }
