@@ -4,8 +4,6 @@ import Facture.Facture_Model.client.Client;
 import Facture.Facture_Model.client.ClientRepository;
 import Facture.Facture_Model.ligneFacture.LigneFacture;
 import Facture.Facture_Model.ligneFacture.LigneFactureMapper;
-import Facture.Facture_Model.ligneFacture.LigneFactureRequest;
-import Facture.Facture_Model.ligneFacture.LigneFactureResponse;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,13 +20,13 @@ public class FactureServiceImpl implements FactureService {
     private final LigneFactureMapper ligneFactureMapper;
     @Override
     public void createFacture(FactureRequest factureRequest) {
-        if(!clientRepository.existsById(factureRequest.getClientId())){
+        if(!clientRepository.existsById(factureRequest.getClientId())){ // verification de l'existance de client avec clientID
             throw new RuntimeException("Client non existent");
         }
-        Client client = clientRepository.getOne(factureRequest.getClientId());
-        Facture facture=factureMapper.mapToFactureEntity(factureRequest);
+        Client client = clientRepository.getOne(factureRequest.getClientId()); // recuperation de le clientID
+        Facture facture=factureMapper.mapToFactureEntity(factureRequest); // mapper la facture request en facture
         facture.setClient(client);
-       List< LigneFacture> ligneFacture=factureRequest.getLignesFactures().stream()
+       List< LigneFacture> ligneFacture=factureRequest.getLignesFactures().stream() // mapper chaque ligne de facture request en ligne facture
                        .map(ligneReq->{
                            LigneFacture ligne=ligneFactureMapper.mapToLigneFactureEntity(ligneReq);
                            ligne.setFacture(facture);

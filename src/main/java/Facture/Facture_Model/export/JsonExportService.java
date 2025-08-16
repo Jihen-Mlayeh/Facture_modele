@@ -11,10 +11,10 @@ import java.io.IOException;
 @Service
 @RequiredArgsConstructor
 public class JsonExportService {
-    private final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;//Convertir des objst Java en Json
     public  File exportFactureToJson(FactureResponse factureResponse) throws IOException {
-        File file=new File("facture_"+factureResponse.getId()+".json");
-        objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, factureResponse);
+        File file=new File("facture_"+factureResponse.getId()+".json"); // Crée un nouveau fichier
+        objectMapper.writerWithDefaultPrettyPrinter().writeValue(file, factureResponse); // Sérialise l'objet factureResponse en json et écrit dans le fichier
         return file;
     }
 }

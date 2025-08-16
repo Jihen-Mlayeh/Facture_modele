@@ -12,7 +12,7 @@ import static org.mockito.Mockito.*;
 
 
 public class ClientServiceImplTest {
-    @Mock
+    @Mock // créer un mock pour simuler le comportement sans toucher à la vraie base de données
     private ClientRepository clientRepository;
     @Mock
     private ClientMapper clientMapper;
@@ -26,13 +26,16 @@ public class ClientServiceImplTest {
     void Should_create_client_successfully() {
         final ClientRequest clientRequest = new ClientRequest();
         final Client mappedClient = buildMapperClient();
+        // quand la méthode mapToClientEntity est appelée avec mappedClient, retourne mappedClient//
         when(clientMapper.mapToClientEntity(clientRequest)).thenReturn(mappedClient);
+        // quand la méthode save est appelée avec mappedClient, retourne mappedClient
         when(clientRepository.save(mappedClient)).thenReturn(mappedClient);
         clientService.createClient(clientRequest);
+        // vérifie que clientRepository.save() a bien été appelé une seule fois
         verify(clientRepository, times(1)).save(mappedClient);
     }
 
-    private static Client buildMapperClient() {
+    private static Client buildMapperClient() { // Construire un objet client avec des valeurs pour les tests
         return Client.builder()
                 .nom("user")
                 .email("user@email.com")

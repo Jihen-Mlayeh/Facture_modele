@@ -18,16 +18,17 @@ import org.springframework.security.web.SecurityFilterChain;
 @RequiredArgsConstructor
 public class SecurityConfig {
     @Bean
-    public InMemoryUserDetailsManager userDetailsManager() {
+    public InMemoryUserDetailsManager userDetailsManager() { // Crée un User avec un username , password et role
         UserDetails user= User.withUsername("user")
-                .password("{noop}password").roles("USER").build();
+                .password("{noop}password") // mot de passe est clair
+                .roles("USER").build();
     return new InMemoryUserDetailsManager(user);}
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http .csrf(csrf->csrf.disable())
-
+        http .csrf(csrf->csrf.disable()) // desactive la protection crsf pour tester tous methodes post/delete/put
+                            // toutes les requetes http sont authentifiées
                                 .authorizeHttpRequests(auth->auth.anyRequest()
-                        .authenticated()).httpBasic(Customizer.withDefaults());
+                        .authenticated()).httpBasic(Customizer.withDefaults()); // authentification http basic (just mot de passe et username
         return http.build();
 
     }
