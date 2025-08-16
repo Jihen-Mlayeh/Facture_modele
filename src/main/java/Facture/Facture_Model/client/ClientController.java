@@ -38,5 +38,10 @@ public class ClientController {
         return ResponseEntity.ok(clientResponse);
 
     }
+    @GetMapping("/hello")
+    public String hello() {
+        return " Security works!";
+    }
+
 
 }
