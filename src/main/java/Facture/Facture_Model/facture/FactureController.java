@@ -39,7 +39,7 @@ public class FactureController {
         FactureResponse factureResponse= factureService.factureDetailsByDate(factureDate);
         return ResponseEntity.ok(factureResponse);
 
-    } // export un fichier en json
+    } // exporter un fichier en json
     @GetMapping("/{factureId}/export-json")
     public ResponseEntity<?> factureExportJson(
             @PathVariable("factureId") Long factureId

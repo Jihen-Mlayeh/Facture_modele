@@ -32,7 +32,7 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public ClientResponse detailClient(Long clientId) { // afficher un client selon l'ID
+    public ClientResponse detailClient(Long clientId) { // afficher les details d'un client selon l'ID
         return clientMapper.mapToClientResponse(clientRepository.findById(clientId).get());
 
     }

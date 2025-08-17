@@ -13,7 +13,7 @@ import java.util.List;
 @RequestMapping("/api/v1/clients")
 public class ClientController {
     private final ClientService clientService;
-
+     // création d'un client
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
     public void createClient(
@@ -22,6 +22,7 @@ public class ClientController {
         clientService.createClient(clientRequest);
 
     }
+    // afficher la liste des clients
     @GetMapping
     public ResponseEntity<List<ClientResponse>> getAllClient(
             @RequestParam(value = "page", defaultValue = "0") int page,
@@ -30,6 +31,7 @@ public class ClientController {
         List<ClientResponse> clients = clientService.getAllClients(page, size);
         return ResponseEntity.ok(clients);
     }
+    // afficher un client selon ID
     @GetMapping("/{clientId}")
     public ResponseEntity<ClientResponse> getClient(
             @PathVariable("clientId") Long clientId
@@ -38,9 +40,10 @@ public class ClientController {
         return ResponseEntity.ok(clientResponse);
 
     }
+    // un simple test pour tester le spring security 😊
     @GetMapping("/hello")
     public String hello() {
-        return " Security works!";
+        return " Security works!❤️";
     }
 
 
