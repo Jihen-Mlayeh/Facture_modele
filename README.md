@@ -11,10 +11,11 @@ Il permet de créer des clients, créer des factures avec des lignes de factures
 - Export des factures en JSON
 - Sécurité basique avec Spring Security (authentification in-memory)
 - Un simple Test 
+- Validation des champs
 
 ## Technologies
 - Java 17
-- Spring Boot 3
+- Spring Boot 3.x
 - Spring Data JPA
 - Spring Security
 - Lombok
