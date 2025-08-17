@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class LigneFactureResponse {
+public class LigneFactureResponse { // FactureResponse: le modéle de données que on expose au client
     private Long id;
     private String description;
     private int quantite;

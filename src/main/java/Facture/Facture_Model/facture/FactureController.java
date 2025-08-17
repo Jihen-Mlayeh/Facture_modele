@@ -1,6 +1,5 @@
 package Facture.Facture_Model.facture;
 
-import Facture.Facture_Model.client.ClientResponse;
 import Facture.Facture_Model.export.JsonExportService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -9,7 +8,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDate;
 
 @RestController
@@ -18,22 +16,22 @@ import java.time.LocalDate;
 public class FactureController {
     private final FactureService factureService;
     private final JsonExportService jsonExportService;
-
+     // création d'une nouvelle facture
     @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
+    @ResponseStatus(HttpStatus.CREATED) // retourne un code http 201 created
     public void createFacture(
             @RequestBody @Valid FactureRequest factureRequest
     ){
-        factureService.createFacture(factureRequest);
+        factureService.createFacture(factureRequest); // appelle le service pour créer la facture
     }
-    @GetMapping("/{factureId}")
+    @GetMapping("/{factureId}")// récupérer une facture par son ID
     public ResponseEntity<FactureResponse> factureDetails(
             @PathVariable("factureId") Long factureId
     ){
         FactureResponse factureResponse= factureService.factureDetails(factureId);
         return ResponseEntity.ok(factureResponse);
 
-    }
+    }// récupérer une facture par une date
     @GetMapping("/factureByDate/{factureDate}")
     public ResponseEntity<FactureResponse> factureDetailsByDate(
             @PathVariable("factureDate") LocalDate factureDate
@@ -41,7 +39,7 @@ public class FactureController {
         FactureResponse factureResponse= factureService.factureDetailsByDate(factureDate);
         return ResponseEntity.ok(factureResponse);
 
-    }
+    } // export un fichier en json
     @GetMapping("/{factureId}/export-json")
     public ResponseEntity<?> factureExportJson(
             @PathVariable("factureId") Long factureId

@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FactureResponse {
+public class FactureResponse {// FactureResponse: le modéle de données que on expose au client
 
     private Long id;
     private Long clientId;

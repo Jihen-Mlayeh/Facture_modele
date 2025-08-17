@@ -11,7 +11,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ClientRequest {
+public class ClientRequest { // ClientRequest : recevoir les données envoyées par le client
     @NotBlank(message = "Le nom ne doit pas étre vide")
     private String nom;
     @NotBlank(message = "Le siret ne doit pas étre vide")

@@ -70,14 +70,14 @@ public class FactureServiceImpl implements FactureService {
         return calculerTotalHT(lignes)+calculerTotalTVA(lignes);
     }
 
-    @Override
+    @Override // afficher les details d'une facteur selon ID
     public FactureResponse factureDetails(Long factureId) {
         Facture facture =factureRepository.findById(factureId).get();
         facture.getLignesFactures().size();
         return factureMapper.mapToFactureResponse(facture);
     }
 
-    @Override
+    @Override // afficher les details d'une facteur selon la date
     public FactureResponse factureDetailsByDate(LocalDate factureDate) {
         Facture facture =factureRepository.findByDate(factureDate);
         facture.getLignesFactures().size();

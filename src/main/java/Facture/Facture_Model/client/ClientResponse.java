@@ -8,7 +8,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class ClientResponse {
+public class ClientResponse { // ClientResponse: le modéle de données que on expose au client
     private Long id;
     private String nom;
     private String siret;

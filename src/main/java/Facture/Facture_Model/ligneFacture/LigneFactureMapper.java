@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class LigneFactureMapper {
+    // mapper une ligne facture request en ligne facture
     public LigneFacture mapToLigneFactureEntity(LigneFactureRequest ligneFactureRequest){
         return LigneFacture.builder()
                 .description(ligneFactureRequest.getDescription())
@@ -12,6 +13,7 @@ public class LigneFactureMapper {
                 .quantite(ligneFactureRequest.getQuantite())
                 .build();
     }
+    // mapper une ligne facture en ligne facture request
     public LigneFactureResponse mapToLigneFactureResponse(LigneFacture ligneFacture){
         return LigneFactureResponse.builder()
                 .id(ligneFacture.getId())

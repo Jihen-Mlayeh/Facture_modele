@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class FactureRequest {
+public class FactureRequest { // FactureRequest : recevoir les données envoyées par le client
    private Long clientId;
     @NotNull(message = "la date ne doit pas étre vide")
     private LocalDate date;

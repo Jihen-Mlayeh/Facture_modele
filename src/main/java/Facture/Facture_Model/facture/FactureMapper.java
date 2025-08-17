@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 @Service
 public class FactureMapper {
+    // mapper une ligne facteur request en ligne facteur
     private final LigneFactureMapper ligneFactureMapper;
     public Facture mapToFactureEntity(FactureRequest factureRequest){
         List<LigneFacture> lignes=factureRequest.getLignesFactures()
@@ -23,6 +24,7 @@ public class FactureMapper {
                 .lignesFactures(lignes)
                 .build();
     }
+    // mapper une facture en facture response
     public FactureResponse mapToFactureResponse(Facture facture){
         List<LigneFactureResponse> lignes =facture.getLignesFactures().stream().map(
                 l->new LigneFactureResponse(
